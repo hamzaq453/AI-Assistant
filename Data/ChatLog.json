@@ -1,0 +1,82 @@
+[
+    {
+        "role": "user",
+        "content": "how you knw that"
+    },
+    {
+        "role": "assistant",
+        "content": "You mentioned it earlier! You told me you're 20 years old."
+    },
+    {
+        "role": "user",
+        "content": "hi"
+    },
+    {
+        "role": "assistant",
+        "content": "Hi Hamza!"
+    },
+    {
+        "role": "user",
+        "content": "Whats the date today"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the latest information I have, today's date is Sunday, February 23, 2025."
+    },
+    {
+        "role": "user",
+        "content": "who won pak vs india champions trophy match ?"
+    },
+    {
+        "role": "assistant",
+        "content": "According to the search results, India won the Pak vs India Champions Trophy match. Virat Kohli scored a century, and India beat Pakistan by 6 wickets."
+    },
+    {
+        "role": "user",
+        "content": "Hello."
+    },
+    {
+        "role": "assistant",
+        "content": "Hello!"
+    },
+    {
+        "role": "user",
+        "content": "Hello."
+    },
+    {
+        "role": "assistant",
+        "content": "Hello again!"
+    },
+    {
+        "role": "user",
+        "content": "Hello."
+    },
+    {
+        "role": "assistant",
+        "content": "Hi!"
+    },
+    {
+        "role": "user",
+        "content": "The time today."
+    },
+    {
+        "role": "assistant",
+        "content": "16:40:19"
+    },
+    {
+        "role": "user",
+        "content": "Hello."
+    },
+    {
+        "role": "assistant",
+        "content": "Hi!"
+    },
+    {
+        "role": "user",
+        "content": "Ismein koi aisa use ham bhul jaate hain jo ki payment kar sake yah bahut basic hai matlab."
+    },
+    {
+        "role": "assistant",
+        "content": "It seems like you're saying that there are some uses that we often forget, which are very basic, like making a payment."
+    }
+]
