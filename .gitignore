@@ -30,13 +30,7 @@ wheels/
 *.swp
 *.swo
 
-# Project specific
-Frontend/Files/*.data
-Data/Images/
-Frontend/Graphics/*.gif
-Frontend/Graphics/*.png
-Frontend/Graphics/*.jpg
-Frontend/Graphics/*.jpeg
+
 
 # Logs
 *.log 

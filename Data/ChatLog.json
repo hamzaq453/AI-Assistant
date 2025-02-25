@@ -1,38 +1,6 @@
 [
     {
         "role": "user",
-        "content": "how you knw that"
-    },
-    {
-        "role": "assistant",
-        "content": "You mentioned it earlier! You told me you're 20 years old."
-    },
-    {
-        "role": "user",
-        "content": "hi"
-    },
-    {
-        "role": "assistant",
-        "content": "Hi Hamza!"
-    },
-    {
-        "role": "user",
-        "content": "Whats the date today"
-    },
-    {
-        "role": "assistant",
-        "content": "According to the latest information I have, today's date is Sunday, February 23, 2025."
-    },
-    {
-        "role": "user",
-        "content": "who won pak vs india champions trophy match ?"
-    },
-    {
-        "role": "assistant",
-        "content": "According to the search results, India won the Pak vs India Champions Trophy match. Virat Kohli scored a century, and India beat Pakistan by 6 wickets."
-    },
-    {
-        "role": "user",
         "content": "Hello."
     },
     {
@@ -78,5 +46,37 @@
     {
         "role": "assistant",
         "content": "It seems like you're saying that there are some uses that we often forget, which are very basic, like making a payment."
+    },
+    {
+        "role": "user",
+        "content": "Hello."
+    },
+    {
+        "role": "assistant",
+        "content": "Hi!"
+    },
+    {
+        "role": "user",
+        "content": "Leave or not bad."
+    },
+    {
+        "role": "assistant",
+        "content": "It seems like you're saying that something is either good enough to leave as it is or not bad at all."
+    },
+    {
+        "role": "user",
+        "content": "How are you?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm doing well, thanks for asking!"
+    },
+    {
+        "role": "user",
+        "content": "Also not bad."
+    },
+    {
+        "role": "assistant",
+        "content": "I see what you did there! You're saying I'm doing \"not bad\" too!"
     }
 ]
