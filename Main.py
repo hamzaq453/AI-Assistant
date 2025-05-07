@@ -43,9 +43,55 @@ DefaultMessage = f"{Username} : Hello {Assistantname}, How are you?\n" \
 subprocesses = []
 Functions = ["open", "close", "play", "system", "content", "google search", "youtube search"]
 
+def ensure_directories_exist():
+    """Create necessary directories and files if they don't exist."""
+    # Create Data directory
+    if not os.path.exists("Data"):
+        os.makedirs("Data")
+    
+    # Create ChatLog.json if it doesn't exist
+    chatlog_path = os.path.join("Data", "ChatLog.json")
+    if not os.path.exists(chatlog_path):
+        with open(chatlog_path, "w", encoding="utf-8") as f:
+            f.write("[]")  # Empty JSON array
+    
+    # Create Frontend/Files directory if it doesn't exist
+    frontend_files_path = os.path.join("Frontend", "Files")
+    if not os.path.exists(frontend_files_path):
+        os.makedirs(frontend_files_path)
+    
+    # Create other necessary directories
+    other_dirs = [
+        os.path.join("Data", "Images"),
+        os.path.join("Frontend", "Graphics")
+    ]
+    
+    for directory in other_dirs:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+# Call this function before any other initialization
+ensure_directories_exist()
+
 def ShowDefaultChatIfNoChats():
-    File = open("Data/ChatLog.json", "r", encoding="utf-8")
-    if len(File.read()) <= 1:
+    try:
+        with open("Data/ChatLog.json", "r", encoding="utf-8") as File:
+            content = File.read()
+            
+        if not content or content.strip() == "[]" or len(content) <= 2:
+            # File is empty or just contains []
+            with open(TempDirectoryPath("Database.data"), "w", encoding="utf-8") as file:
+                file.write("")
+
+            with open(TempDirectoryPath("Responses.data"), "w", encoding="utf-8") as file:
+                file.write(DefaultMessage)
+    except Exception as e:
+        print(f"Error in ShowDefaultChatIfNoChats: {e}")
+        # Create the file if it doesn't exist
+        with open("Data/ChatLog.json", "w", encoding="utf-8") as File:
+            File.write("[]")
+        
+        # Write default messages
         with open(TempDirectoryPath("Database.data"), "w", encoding="utf-8") as file:
             file.write("")
 
@@ -53,9 +99,16 @@ def ShowDefaultChatIfNoChats():
             file.write(DefaultMessage)
 
 def ReadChatLogJson():
-    with open("Data/ChatLog.json", "r", encoding="utf-8") as file:
-        chatlog_data = json.load(file)
-    return chatlog_data
+    try:
+        with open("Data/ChatLog.json", "r", encoding="utf-8") as file:
+            content = file.read().strip()
+            if not content or content == "[]":
+                return []
+            chatlog_data = json.loads(content)
+        return chatlog_data
+    except Exception as e:
+        print(f"Error reading ChatLog.json: {e}")
+        return []
 
 def ChatLogIntegration():
     json_data = ReadChatLogJson()

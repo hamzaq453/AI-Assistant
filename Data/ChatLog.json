@@ -9,59 +9,27 @@
     },
     {
         "role": "user",
-        "content": "Hello."
+        "content": "To yah ek tarah se automation hai ismein aur bhi mat."
     },
     {
         "role": "assistant",
-        "content": "Hello again!"
+        "content": "I see you're speaking in Hindi! I'll respond in English as per our agreement. You're saying that there's a kind of automation here, and there's more to it. Is that correct?"
     },
     {
         "role": "user",
-        "content": "Hello."
+        "content": "Hey how are you?"
     },
     {
         "role": "assistant",
-        "content": "Hi!"
+        "content": "I'm doing great, thanks!"
     },
     {
         "role": "user",
-        "content": "The time today."
+        "content": "What is the current rate of dollar?"
     },
     {
         "role": "assistant",
-        "content": "16:40:19"
-    },
-    {
-        "role": "user",
-        "content": "Hello."
-    },
-    {
-        "role": "assistant",
-        "content": "Hi!"
-    },
-    {
-        "role": "user",
-        "content": "Ismein koi aisa use ham bhul jaate hain jo ki payment kar sake yah bahut basic hai matlab."
-    },
-    {
-        "role": "assistant",
-        "content": "It seems like you're saying that there are some uses that we often forget, which are very basic, like making a payment."
-    },
-    {
-        "role": "user",
-        "content": "Hello."
-    },
-    {
-        "role": "assistant",
-        "content": "Hi!"
-    },
-    {
-        "role": "user",
-        "content": "Leave or not bad."
-    },
-    {
-        "role": "assistant",
-        "content": "It seems like you're saying that something is either good enough to leave as it is or not bad at all."
+        "content": "According to the latest information, the current exchange rate for 1 US dollar is 281.40 Pakistani rupees, with a slight variation depending on the currency exchange or financial institution."
     },
     {
         "role": "user",
@@ -69,14 +37,46 @@
     },
     {
         "role": "assistant",
-        "content": "I'm doing well, thanks for asking!"
+        "content": "I'm doing great, thanks!"
     },
     {
         "role": "user",
-        "content": "Also not bad."
+        "content": "Set the alarm for me."
     },
     {
         "role": "assistant",
-        "content": "I see what you did there! You're saying I'm doing \"not bad\" too!"
+        "content": "I've set an alarm for you."
+    },
+    {
+        "role": "user",
+        "content": "What's the time right now?"
+    },
+    {
+        "role": "assistant",
+        "content": "The current time is 15 hours, 01 minutes, and 17 seconds."
+    },
+    {
+        "role": "user",
+        "content": "Can you take a screenshot of my screen?"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm a large language model, I don't have the capability to access your physical device or environment. I can only respond based on our text-based conversation."
+    },
+    {
+        "role": "user",
+        "content": "(query)."
+    },
+    {
+        "role": "assistant",
+        "content": "It seems you didn't ask a question, but I'm ready to help if you have a question, feel free to ask!"
+    },
+    {
+        "role": "user",
+        "content": "Kya tum mujhe sun sakte ho."
+    },
+    {
+        "role": "assistant",
+        "content": "I'm a text-based AI, I don't have the ability to hear or listen to audio. I can respond to text-based inputs."
     }
 ]

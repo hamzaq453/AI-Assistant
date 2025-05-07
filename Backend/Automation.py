@@ -58,7 +58,7 @@ def Content(Topic):
         messages.append({"role": "user", "content": f"{prompt}"})
 
         completion = client.chat.completions.create(
-            model="mixtral-8x7b-32768",
+            model="llama3-70b-8192",
             messages=SystemChatBot + messages,
             max_tokens=2048,
             temperature=0.7,
@@ -126,7 +126,8 @@ def OpenApp(app, sess=requests.session()):
         "gmail": "https://mail.google.com",
         "facebook": "https://www.facebook.com",
         "twitter": "https://twitter.com",
-        "instagram": "https://www.instagram.com"
+        "instagram": "https://www.instagram.com",
+        "whatsapp": "https://web.whatsapp.com"
     }
 
     # Dictionary of system apps and their executable names
@@ -142,8 +143,8 @@ def OpenApp(app, sess=requests.session()):
     }
 
     try:
-        # Clean the app name
-        app_lower = app.lower().strip()
+        # Clean the app name - remove periods, spaces, and convert to lowercase
+        app_lower = app.lower().strip().rstrip('.')
 
         # Check if it's a web app
         if app_lower in web_apps:
@@ -225,6 +226,24 @@ def System(command):
     def volume_down():
         keyboard.press_and_release("volume down")
 
+    def brightness_up():
+        keyboard.press_and_release("brightness up")
+
+    def brightness_down():
+        keyboard.press_and_release("brightness down")
+
+    def take_screenshot():
+        keyboard.press_and_release("print screen")
+
+    def sleep():
+        os.system("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
+
+    def shutdown():
+        os.system("shutdown /s /t 60")
+
+    def cancel_shutdown():
+        os.system("shutdown /a")
+
     if command == "mute":
         mute()
     elif command == "unmute":
@@ -233,8 +252,80 @@ def System(command):
         volume_up()
     elif command == "volume down":
         volume_down()
+    elif command == "brightness up":
+        brightness_up()
+    elif command == "brightness down":
+        brightness_down()
+    elif command == "screenshot":
+        take_screenshot()
+    elif command == "sleep":
+        sleep()
+    elif command == "shutdown":
+        shutdown()
+    elif command == "cancel shutdown":
+        cancel_shutdown()
 
     return True
+
+def MediaControl(command):
+    def play_pause():
+        keyboard.press_and_release("play/pause media")
+
+    def next_track():
+        keyboard.press_and_release("next track")
+
+    def previous_track():
+        keyboard.press_and_release("prev track")
+
+    def stop():
+        keyboard.press_and_release("stop media")
+
+    if command == "play":
+        play_pause()
+    elif command == "pause":
+        play_pause()
+    elif command == "next":
+        next_track()
+    elif command == "previous":
+        previous_track()
+    elif command == "stop":
+        stop()
+
+    return True
+
+def Productivity(command, *args):
+    def create_note(title, content):
+        DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Data", "Notes")
+        if not os.path.exists(DATA_DIR):
+            os.makedirs(DATA_DIR)
+        
+        file_path = os.path.join(DATA_DIR, f"{title}.txt")
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        return True
+
+    def create_task(task):
+        DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Data", "Tasks")
+        if not os.path.exists(DATA_DIR):
+            os.makedirs(DATA_DIR)
+        
+        file_path = os.path.join(DATA_DIR, "tasks.txt")
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(f"- {task}\n")
+        return True
+
+    def open_calendar():
+        webbrowser.open("https://calendar.google.com")
+        return True
+
+    if command == "note":
+        return create_note(args[0], args[1])
+    elif command == "task":
+        return create_task(args[0])
+    elif command == "calendar":
+        return open_calendar()
+
+    return False
 
 async def TranslateAndExecute(commands: list[str]):
     funcs = []
@@ -261,7 +352,7 @@ async def TranslateAndExecute(commands: list[str]):
             funcs.append(fun)
 
         elif command.startswith("content "):
-            fun = asyncio.to_thread(Content, command)  # Pass full command for proper handling
+            fun = asyncio.to_thread(Content, command)
             funcs.append(fun)
 
         elif command.startswith("google search "):
@@ -274,6 +365,26 @@ async def TranslateAndExecute(commands: list[str]):
 
         elif command.startswith("system "):
             fun = asyncio.to_thread(System, command.removeprefix("system "))
+            funcs.append(fun)
+
+        elif command.startswith("media "):
+            fun = asyncio.to_thread(MediaControl, command.removeprefix("media "))
+            funcs.append(fun)
+
+        elif command.startswith("note "):
+            parts = command.removeprefix("note ").split(":", 1)
+            if len(parts) == 2:
+                title, content = parts
+                fun = asyncio.to_thread(Productivity, "note", title.strip(), content.strip())
+                funcs.append(fun)
+
+        elif command.startswith("task "):
+            task = command.removeprefix("task ")
+            fun = asyncio.to_thread(Productivity, "task", task)
+            funcs.append(fun)
+
+        elif command == "calendar":
+            fun = asyncio.to_thread(Productivity, "calendar")
             funcs.append(fun)
 
     results = await asyncio.gather(*funcs)
